@@ -104,3 +104,24 @@ if __name__ == "__main__":
     print(f"Dummy HP should be 33 → Actual: {dummy.hp}")
     print()
     print("=== Tests Completed ===")
+
+class FireCreature(Creature):
+    def __init__(self, name, hp, attack_power):
+            super().__init__(name, hp, attack_power)
+            self.fire_level = 0
+    
+    def emit_fire(self,new_fire_level):
+        self.fire_level = new_fire_level
+        print(f'{self.name} just poop fire with the destruction capacity of {self.fire_level}!!!')
+
+    def attack(self, target):
+        if not self.is_alive():
+            print(f"{self.name} cannot attack because it is defeated.")
+            return
+
+        print(f"{self.name} poops fire at {target.name} with the power of {self.fire_level}!")
+        print(f"It burns {target.name} for {self.attack_power} damage!")
+        target.hp -= self.attack_power
+        if target.hp < 0:
+            target.hp = 0
+        print(f"{target.name} HP is now {target.hp}")
